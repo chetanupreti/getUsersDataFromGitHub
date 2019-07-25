@@ -1,0 +1,17 @@
+<div class = "container">
+  <label>
+    UserName :
+  </label>
+  <mat-form-field>
+    <textarea matInput [formControl]="user">
+    </textarea>
+    <mat-error *ngIf="user.hasError('required')">
+      username is required.
+    </mat-error>
+    <mat-error *ngIf="user.hasError('maxlength')">
+      Max length is 100.
+    </mat-error>
+  </mat-form-field>
+  <button mat-button color="accent" (click) = "getUserDetails()"> Get Details
+  </button>
+</div>
