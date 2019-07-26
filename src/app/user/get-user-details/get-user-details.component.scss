@@ -1,13 +1,21 @@
-.container {
-  background-color: aliceblue;
-  position: absolute;
-  border: 1px solid;
-  padding: 30px;
-  width: 200px;
-  height: 200px;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  -moz-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
+.invalid-feedback{
+    display: inline;
 }
+
+.userNames{
+    margin-left: 42px;
+    margin-right: 42px;
+}
+
+.btn{
+    margin-left: 17px;
+    margin-bottom: 6px;
+}
+.mat-card{
+    top: 50px;
+}
+ .mat-card-title{
+    font-size: 18px;
+    font-variant: petite-caps;
+    color: teal;
+ }

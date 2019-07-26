@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators } from "@angular/forms";
+import { FormControl, Validators, FormBuilder, FormGroup } from "@angular/forms";
 import { UserService } from '../user-service/user.service';
 @Component({
 	selector: 'app-get-user-details',
@@ -8,20 +8,23 @@ import { UserService } from '../user-service/user.service';
 })
 export class GetUserDetailsComponent implements OnInit {
 
-	constructor(private userService: UserService) { }
+	constructor(private fb: FormBuilder,
+		private userService: UserService) { }
 
+	userName: FormGroup;	
+	submitted:boolean = false;
 	ngOnInit() {
+		this.userName = this.fb.group({
+			userNames: ['', Validators.required ]
+		})
+	}
+	
+	get userForm() { 
+		return this.userName.controls; 
 	}
 
-	user = new FormControl('', [
-		Validators.required,
-		Validators.maxLength(100)
-	]);
-
-	getUserDetails() {
-		var users = this.user.value;
-		if (users) {
-			this.userService.getUserDetails(users);
-		}
+	onSubmit() {
+		this.submitted = true;
+		console.log(this.userForm);
 	}
 }
