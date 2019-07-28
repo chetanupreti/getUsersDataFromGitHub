@@ -3,17 +3,13 @@ import { HttpClient } from '@angular/common/http';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
-
 	constructor(private httpClient: HttpClient) { }
 
-	URL = 'http://localhost:5000';
+	URL = 'http://localhost:5000/getUsersData';
 
 	getUserDetails(users) {
-		this.httpClient.post(this.URL, { 'users': users })
-			.subscribe(res => {
-				console.log(res);
-			}), (err) => {
-				console.log(err);
-			}
+		return this.httpClient.post(this.URL, { 'gitHubUserNames': users })
 	}
+
+
 }

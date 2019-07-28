@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators, FormBuilder, FormGroup } from "@angular/forms";
+import { Validators, FormBuilder, FormGroup } from "@angular/forms";
 import { UserService } from '../user-service/user.service';
+
 @Component({
 	selector: 'app-get-user-details',
 	templateUrl: './get-user-details.component.html',
@@ -9,22 +10,48 @@ import { UserService } from '../user-service/user.service';
 export class GetUserDetailsComponent implements OnInit {
 
 	constructor(private fb: FormBuilder,
-		private userService: UserService) { }
+		private userService: UserService,
+	) { }
 
-	userName: FormGroup;	
-	submitted:boolean = false;
+	userName: FormGroup;
+	show: boolean = true;
+	userDetails = [];
 	ngOnInit() {
 		this.userName = this.fb.group({
-			userNames: ['', Validators.required ]
+			userNames: ['', Validators.required]
 		})
-	}
-	
-	get userForm() { 
-		return this.userName.controls; 
 	}
 
 	onSubmit() {
-		this.submitted = true;
-		console.log(this.userForm);
+		console.log(this.userName);
+		if (!this.userName.valid) {
+			return;
+		}
+		else {
+			let sendData = this.makingUserData(this.userName.value);
+			this.userService.getUserDetails(sendData)
+			.subscribe(res => {
+				this.userDetails = res['usersDetails'];
+				this.show = false;
+			}),(err =>{
+				console.log(err);
+			})
+			
+		}
+	}
+
+	makingUserData(value) {
+		var userDataForBackEnd = [];
+		let users = value.userNames.split(',');
+		users.map((user) => {
+			let obj = {};
+			obj['name'] = user;
+			userDataForBackEnd.push(obj);
+		})
+		return userDataForBackEnd;
+	}
+
+	get userForm() {
+		return this.userName.controls;
 	}
 }

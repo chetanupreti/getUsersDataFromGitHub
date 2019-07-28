@@ -1,0 +1,37 @@
+.body {
+  margin: 4px;
+}
+
+.container {
+  display: flex;
+  width: 94%;
+  height: 13%;
+  margin-top: 64px;
+  flex-basis: 10%;
+  flex-wrap: wrap;
+  border: 4px rgb(5, 112, 53);
+}
+
+.container div {
+
+  width: 70%;
+
+}
+
+.box-1 {
+  flex: 3;
+  color: black;
+  font-size: small;
+  background-color: silver;
+}
+
+@media(min-width:768px) {
+  .container {
+    display: flex;
+  }
+}
+
+.label {
+  color: crimson;
+  font-size: initial
+}

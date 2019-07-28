@@ -1,3 +1,25 @@
-<p>
-  show-user-details works!
-</p>
+<div class="container">
+    <div class="box-1" *ngFor="let user of userDetails">
+        <label  class = 'label'>
+            Id :
+        </label> {{user.id}} ||
+        <label  class = 'label'>
+            Name : 
+        </label>{{user.name}} ||
+        <label  class = 'label'>
+            Avatar_url :
+        </label>  {{user.avatar_url}} ||
+        <label  class = 'label'>
+            Bio :
+        </label>  {{user.bio}}  ||
+        <label  class = 'label'>
+            Public_repos :
+        </label>  {{user.public_repos}} ||
+        <label  class = 'label'>
+            Public_gists :
+        </label> {{user.public_gists}} ||
+        <label  class = 'label'>
+            followers :
+        </label> {{user.followers}}
+    </div>
+</div>
