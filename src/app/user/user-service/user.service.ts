@@ -5,11 +5,9 @@ import { HttpClient } from '@angular/common/http';
 export class UserService {
 	constructor(private httpClient: HttpClient) { }
 
-	URL = 'http://localhost:5000/getUsersData';
+	URL = 'https://git.heroku.com/learn-redis.git/getUsersData';
 
 	getUserDetails(users) {
 		return this.httpClient.post(this.URL, { 'gitHubUserNames': users })
 	}
-
-
 }
